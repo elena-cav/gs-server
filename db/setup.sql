@@ -1,0 +1,5 @@
+DROP DATABASE IF EXISTS goldenShoe_test;
+DROP DATABASE IF EXISTS goldenShoe;
+
+CREATE DATABASE goldenShoe_test;
+CREATE DATABASE goldenShoe;
