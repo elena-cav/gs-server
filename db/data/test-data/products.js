@@ -51,7 +51,7 @@ module.exports = [
     best_seller_tag__y_or_n: "Y",
   },
   {
-    product_id: "98f90e58d0be0eee8a71433b290e6754",
+    product_id: "98f90e58d0be0eee8a71433b290e6774",
     crawl_timestamp: "2020-02-06 08:19:32 +0000",
     asin: "B01BHZLWL5",
     product_url: "#",
@@ -68,7 +68,7 @@ module.exports = [
     best_seller_tag__y_or_n: "Y",
   },
   {
-    product_id: "98f90e58d0be0eee8a71433b290e6755",
+    product_id: "98f90e58d0be0eee8a71433b290e6775",
     crawl_timestamp: "2020-02-06 08:19:32 +0000",
     asin: "B01BHZLWL6",
     product_url: "#",

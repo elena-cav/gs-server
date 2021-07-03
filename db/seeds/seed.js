@@ -1,4 +1,4 @@
-const { accountsData, readingsData } = require('../data/index');
+const { productsData, ordersData, customersData } = require('../data/index');
 
 exports.seed = function (knex) {
   return knex.migrate
@@ -6,8 +6,10 @@ exports.seed = function (knex) {
     .then(() => knex.migrate.latest())
     .then(() => {
       return Promise.all([
-        knex.insert(accountsData).into('accounts'),
-        knex.insert(readingsData).into('readings')
+        knex.insert(productsData).into('products'),
+        knex.insert(customersData).into('customers')
       ]);
-    });
+    }).then(() => {
+            return knex.insert(ordersData).into('orders'); 
+    })
 };

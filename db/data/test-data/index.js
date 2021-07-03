@@ -1,3 +1,3 @@
 exports.customersData = require("./customers");
 exports.ordersData = require("./orders");
-exports.ordersData = require("./products");
+exports.productsData = require("./products");
