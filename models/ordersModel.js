@@ -1,4 +1,4 @@
-// const dbConnection = require('../db/dbConnection');
+const dbConnection = require('../db/dbConnection');
 // const { getValidAndInvalid } = require('../utils/utils');
 // exports.validateKeys = ([body]) => {
 //   if (
@@ -37,5 +37,5 @@ exports.fetchOrders = ({ sort_by, order }) => {
   return dbConnection
     .select('*')
     .from('orders')
-    // .orderBy(sort_by || 'meter_reading_id', order || 'asc');
+    .orderBy(sort_by || 'order_id', order || 'asc');
 };

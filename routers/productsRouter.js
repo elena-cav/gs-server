@@ -1,8 +1,9 @@
 const productsRouter = require('express').Router();
 const {
   getProducts,
+  getProductsByKeyword
 } = require('../controllers/productsController');
 
 productsRouter.route('/').get(getProducts);
-// accountsRouter.route('/:account_id').patch(patchAccount);
+productsRouter.route('/:meta_keyword').get(getProductsByKeyword);
 module.exports = productsRouter;

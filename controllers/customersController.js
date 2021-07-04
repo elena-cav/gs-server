@@ -1,9 +1,7 @@
-const {
-  fetchCustomers
-} = require('../models/customersModel');
+const { fetchCustomers } = require('../models/customersModel');
 
 exports.getCustomers = (req, res, next) => {
-  fetchCustomers()
+  fetchCustomers(req.query)
     .then((customers) => {
       res.status(200).send({ customers });
     })

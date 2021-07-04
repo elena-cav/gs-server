@@ -19,7 +19,7 @@ exports.fetchCustomers = ({ sort_by, order }) => {
   return dbConnection
     .select('*')
     .from('customers')
-    // .orderBy(sort_by || 'account_id', order || 'asc');
+    .orderBy(sort_by || 'customer_id', order || 'asc');
 };
 
 // exports.updateAccount = (input, { account_id }) => {

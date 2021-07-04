@@ -1,26 +1,40 @@
 const dbConnection = require('../db/dbConnection');
 
-// exports.checkAccountExists = ({ account_id }) => {
-//   return dbConnection
-//     .select('*')
-//     .from('accounts')
-//     .where({ account_id })
-//     .then(([account]) => {
-//       if (account === undefined) {
-//         return Promise.reject({
-//           status: 404,
-//           msg: `Account ID ${account_id} not found`
-//         });
-//       }
-//     });
-// };
-
-exports.fetchProducts = () => {
-  console.log('in model')
+exports.checkKeywordExists = ({ meta_keyword }) => {
   return dbConnection
     .select('*')
     .from('products')
-    // .orderBy(sort_by || 'account_id', order || 'asc');
+    .where('meta_keywords', 'like', `%${meta_keyword}%`)
+    .then(([product]) => {
+      if (product === undefined) {
+        return Promise.reject({
+          status: 404,
+          msg: `Keyword ${meta_keyword} not found`
+        });
+      }
+    });
+};
+
+exports.fetchProducts = ({ sort_by, order }) => {
+  return dbConnection
+    .select('*')
+    .from('products')
+    .orderBy(sort_by || 'timestamp', order || 'asc');
+};
+
+exports.fetchProducts = ({ sort_by, order }) => {
+  return dbConnection
+    .select('*')
+    .from('products')
+    .orderBy(sort_by || 'timestamp', order || 'asc');
+};
+
+exports.fetchProductsByKeyword = ({ sort_by, order }, { meta_keyword }) => {
+  return dbConnection
+    .select('*')
+    .from('products')
+    .orderBy(sort_by || 'timestamp', order || 'asc')
+    .where('meta_keywords', 'like', `%${meta_keyword}%`);
 };
 
 // exports.updateAccount = (input, { account_id }) => {
