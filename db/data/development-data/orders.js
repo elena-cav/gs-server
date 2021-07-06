@@ -9,8 +9,8 @@ module.exports = [
     sales_price: "100.00",
     size: '4',
     color: 'beige',
-    fulfilled: '1',
-    deleted: '0',
-    paid: '1'
+    fulfilled: 'true',
+    deleted: 'false',
+    paid: 'true'
   },
 ];

@@ -9,9 +9,9 @@ exports.up = function (knex) {
     ordersTable.string("sales_price");
     ordersTable.string("size");
     ordersTable.string("color");
- ordersTable.string("fulfilled");
-  ordersTable.string("deleted");
-    ordersTable.string("paid");
+ ordersTable.boolean("fulfilled");
+  ordersTable.boolean("deleted");
+    ordersTable.boolean("paid");
 
   });
 };
