@@ -110,8 +110,11 @@ module.exports = [
     last: "Bechtelar",
     created_at: "2014-11-01T03:10:57.789Z",
     country: "United Kingdom",
-        address: {"street": "8 W Cerritos Ave #54", "city": "Bridgeport","state": "NJ", "zip": "08014" }
-
+    address: {
+      street: "8 W Cerritos Ave #54",
+      city: "Bridgeport",
+      state: "NJ",
+      zip: "08014",
+    },
   },
-
 ];
