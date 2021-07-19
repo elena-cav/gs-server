@@ -19,20 +19,19 @@ describe('/api', () => {
     return Promise.all(methodPromises);
   });
 });
-// describe('GET', () => {
-//   it('status:200, returns a JSON file with all the available endpoints', () => {
-//     return request(app)
-//       .get('/api')
-//       .expect(200)
-//       .then(({ text }) => {
-//         const parsed = JSON.parse(text);
-//         expect(parsed).toHaveProperty('GET /api');
-//         expect(parsed).toHaveProperty('GET /api/accounts');
-//       });
-//   });
-// });
+describe('GET', () => {
+  it('status:200, returns a JSON file with all the available endpoints', () => {
+    return request(app)
+      .get('/api')
+      .expect(200)
+      .then(({ text }) => {
+        const parsed = JSON.parse(text);
+        expect(parsed).toHaveProperty('GET /api');
+        expect(parsed).toHaveProperty('GET /api/products');
+      });
+  });
+});
 describe('/products', () => {
-
   describe('/GET', () => {
     test('status: 200, returns all products, sorted by timestamp by default', () => {
       return request(app)
@@ -179,9 +178,9 @@ describe('/products', () => {
                 sales_price: expect.any(String),
                 size: expect.any(String),
                 color: expect.any(String),
-                fulfilled: expect.any(String),
-                deleted: expect.any(String),
-                paid: expect.any(String)
+                fulfilled: expect.any(Boolean),
+                deleted: expect.any(Boolean),
+                paid: expect.any(Boolean)
               });
               expect(body.orders).toBeSortedBy('order_id', {
                 descending: false
@@ -213,132 +212,8 @@ describe('/products', () => {
         });
       });
     });
-    //     test('status: 200, should accept a query sort by surname', () => {
-    //       return request(app)
-    //         .get('/api/accounts?sort_by=surname')
-    //         .expect(200)
-    //         .then(({ body }) => {
-    //           expect(body.accounts[0]).toMatchObject({
-    //             account_id: expect.any(String),
-    //             first_name: expect.any(String),
-    //             surname: expect.any(String),
-    //             email: expect.any(String)
-    //           });
-    //           expect(body.accounts).toBeSortedBy('surname', {
-    //             descending: false
-    //           });
-    //         });
-    //     });
-    //     test('status: 200, should accept a query order desc', () => {
-    //       return request(app)
-    //         .get('/api/accounts?order=desc')
-    //         .expect(200)
-    //         .then(({ body }) => {
-    //           expect(body.accounts).toHaveLength(7);
-    //           expect(body.accounts[0]).toMatchObject({
-    //             account_id: expect.any(String),
-    //             first_name: expect.any(String),
-    //             surname: expect.any(String),
-    //             email: expect.any(String)
-    //           });
-    //           expect(body).toBeSortedBy('account_id', {
-    //             descending: true
-    //           });
-    //         });
-    //     });
-    //     test('status: 200, should accept a query sort_by surname and order desc', () => {
-    //       return request(app)
-    //         .get('/api/accounts?sort_by=surname&order=desc')
-    //         .expect(200)
-    //         .then(({ body }) => {
-    //           expect(body.accounts[0]).toMatchObject({
-    //             account_id: expect.any(String),
-    //             first_name: expect.any(String),
-    //             surname: expect.any(String),
-    //             email: expect.any(String)
-    //           });
-    //           expect(body.accounts).toBeSortedBy('surname', {
-    //             descending: true
-    //           });
-    //         });
-    //     });
-    //   });
-    //   describe('/accounts/:account_id', () => {
-    //     describe('PATCH', () => {
-    //       test('should update the email by account id ', () => {
-    //         return request(app)
-    //           .patch('/api/accounts/5e345cff-fb8f-4ed6-a961-8818a65392c9')
-    //           .send({ email: 'newtestemail@gmail.com' })
-    //           .expect(200)
-    //           .then(({ body }) => {
-    //             expect(body.account).toMatchObject({
-    //               account_id: '5e345cff-fb8f-4ed6-a961-8818a65392c9',
-    //               first_name: expect.any(String),
-    //               surname: expect.any(String),
-    //               email: 'newtestemail@gmail.com'
-    //             });
-    //           });
-    //       });
 
-    //       test('should update the name by account id ', () => {
-    //         return request(app)
-    //           .patch('/api/accounts/5e345cff-fb8f-4ed6-a961-8818a65392c9')
-    //           .send({ first_name: 'newtestname' })
-    //           .expect(200)
-    //           .then(({ body }) => {
-    //             expect(body.account).toMatchObject({
-    //               account_id: '5e345cff-fb8f-4ed6-a961-8818a65392c9',
-    //               first_name: 'newtestname',
-    //               surname: expect.any(String),
-    //               email: expect.any(String)
-    //             });
-    //           });
-    //       });
-    //       test('should update the surname by account id ', () => {
-    //         return request(app)
-    //           .patch('/api/accounts/5e345cff-fb8f-4ed6-a961-8818a65392c9')
-    //           .send({ surname: 'newtestsurname' })
-    //           .expect(200)
-    //           .then(({ body }) => {
-    //             expect(body.account).toMatchObject({
-    //               account_id: '5e345cff-fb8f-4ed6-a961-8818a65392c9',
-    //               first_name: expect.any(String),
-    //               surname: 'newtestsurname',
-    //               email: expect.any(String)
-    //             });
-    //           });
-    //       });
-    //       test('should update multiple fields by account id ', () => {
-    //         return request(app)
-    //           .patch('/api/accounts/5e345cff-fb8f-4ed6-a961-8818a65392c9')
-    //           .send({
-    //             surname: 'newtestsurname',
-    //             email: 'newtestemail@gmail.com',
-    //             first_name: 'newtestname'
-    //           })
-    //           .expect(200)
-    //           .then(({ body }) => {
-    //             expect(body.account).toMatchObject({
-    //               account_id: '5e345cff-fb8f-4ed6-a961-8818a65392c9',
-    //               first_name: 'newtestname',
-    //               surname: 'newtestsurname',
-    //               email: 'newtestemail@gmail.com'
-    //             });
-    //           });
-    //       });
-    //     });
     describe('Error handling', () => {
-      // test('should return 400 if keyword ', () => {
-      //   return request(app)
-      //     .patch('/api/accounts/5e345cff-fb8f-4ed6-a961-8818a65392c9')
-      //     .send({
-      //       name: 'newtestsurname'
-      //     })
-      //     .expect(400)
-      //     .then(({ body: { msg } }) => {
-      //       expect(msg).toBe('Invalid entry');
-      //     });
-      // });
       test('should return 404 if keyword is not found', () => {
         return request(app)
           .get('/api/products/bag')
